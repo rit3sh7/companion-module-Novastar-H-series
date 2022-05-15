@@ -1,4 +1,4 @@
-//Novastar H-series processor  for H2, H5, H9, H15 models
+//Novastar H-series processor  for H2, H5, H9, H15 & ENhanced models
 
 var udp = require('../../udp');
 var instance_skel = require('../../instance_skel');
@@ -24,11 +24,6 @@ instance.prototype.updateConfig = function(config) {
     if (self.udp !== undefined) {
         self.udp.destroy();
         delete self.udp;
-    }
-
-    if (self.socket !== undefined) {
-        self.socket.destroy();
-        delete self.socket;
     }
 
     self.config = config;
@@ -103,10 +98,6 @@ instance.prototype.config_fields = function() {
 instance.prototype.destroy = function() {
     var self = this;
 
-    if (self.socket !== undefined) {
-        self.socket.destroy();
-    }
-
     if (self.udp !== undefined) {
         self.udp.destroy();
     }
@@ -125,7 +116,7 @@ instance.prototype.init_presets = function() {
 instance.prototype.actions = function(system) {
     var self = this;
 
-    self.system.emit('instance_actions', self.id, {
+    self.setActions({
 
 //----------------------------RECALL PRESETS------------------------------------
 
@@ -277,6 +268,41 @@ instance.prototype.actions = function(system) {
             ]
         },
         */
+//-------------------------------Fade to Black ---------------------------------
+        'ftb': {
+                label: 'Fade To Black',
+                options: [
+                  {
+                        type: 'number',
+                        label: 'Device ID',
+                        id: 'deviceid',
+                        min: 1,
+                        max: 10,
+                        default: 1,
+                        required: true
+                    },
+                    {
+                        type: 'number',
+                        label: 'ScreenID',
+                        id: 'screenid',
+                        min: 1,
+                        max: 40,
+                        default: 1,
+                        required: true
+                    },
+                  {
+                        type: 'number',
+                        label: 'Type',
+                        id: 'typeid',
+                        min: 0,
+                        max: 0,
+                        default: 0,
+                        required: true
+                       
+                    }
+                ]
+            },
+        
 //------------------------------SEND COMMANDS ----------------------------------
                 'send': {
                     label: 'Send Command',
@@ -338,6 +364,18 @@ instance.prototype.action = function(action) {
                 console.log(cmd);
                 break;
                 */
+//----------------------------------------------------------------------------
+        case 'ftb':
+          var cmd_obj = [{
+            "cmd": "W0409",
+            "deviceId": parseInt(options.deviceid) - 1,
+            "screenId": parseInt(options.screenid) - 1,
+            "type": parseInt(options.typeid)
+          }];
+            //  [{ "cmd":"W0409", "deviceId":0, "scree  nId":0, "type":0}]
+          cmd = JSON.stringify(cmd_obj);
+          console.log(cmd);
+        break;
 //----------------------------------------------------------------------------
             case 'send':
               cmd = unescape(action.options.id_send);
