@@ -1,4 +1,4 @@
-//Novastar H-series processor  for H2, H5, H9, H15 & ENhanced models
+//Novastar H-series processor  for H2, H5, H9, H15 models
 
 var udp = require('../../udp');
 var instance_skel = require('../../instance_skel');
@@ -295,7 +295,7 @@ instance.prototype.actions = function(system) {
                         label: 'Type',
                         id: 'typeid',
                         min: 0,
-                        max: 0,
+                        max: 1,
                         default: 0,
                         required: true
                        
