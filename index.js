@@ -291,13 +291,18 @@ instance.prototype.actions = function(system) {
                         required: true
                     },
                   {
-                        type: 'number',
-                        label: 'Type',
-                        id: 'typeid',
-                        min: 0,
-                        max: 1,
-                        default: 0,
-                        required: true
+                        type: 'dropdown',
+                        label: 'Fade to Black',
+                        id: 'fadetoblackid',
+                        default: '0',
+                        choices: [
+                        { id: '0', label: 'Enable'},
+                        { id: '1', label: 'Disable'}
+                        ]
+                       // min: 0,
+                        //max: 1,
+                        //default: 0,
+                      //  required: true
                        
                     }
                 ]
