@@ -19,13 +19,13 @@
               "H15"
     ],
     "shortname": "H-Series",
-     "homepage": "https://github.com/bitfocus/companion-module-generic-tcp-udp#readme",
+     "homepage": "https://github.com/bitfocus/companion-module-novastar-h-series#readme",
     "main": "index.js",
 
     "author": "Ritesh Patel <Ritesh@RedDotLogics.com>",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/bitfocus/companion-module-generic-tcp-udp/issues"
+        "url": "https://github.com/bitfocus/companion-module-novastar-h-series/issues"
     }
 }
 
