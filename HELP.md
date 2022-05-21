@@ -4,3 +4,4 @@
 * Change Brightness 
 * Recall Presets 
 * Switch Layer source
+* Fade to Black -Enable (Type 0) & Disable (Type 1) 
